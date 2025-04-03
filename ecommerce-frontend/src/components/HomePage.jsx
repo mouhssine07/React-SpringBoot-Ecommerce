@@ -10,6 +10,10 @@ function HomePage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const scrollToSection = () => {
+        sectionRef.current?.scrollIntoView({ behavior: "smooth" }); // Scroll smoothly
+    };
+
     useEffect(() => {
         setLoading(true);
         axios.get('http://localhost:8080/api/products')
@@ -39,8 +43,8 @@ function HomePage() {
     return (
         <div className="container mx-auto px-4 py-8 mt-16">
             {/* Hero Banner */}
-            <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-xl mb-10">
-                <div className="flex flex-col md:flex-row items-center p-8 md:p-12">
+            <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-xl mb-10 ">
+                <div className="flex flex-col md:flex-row text-center items-center p-8 md:p-15 gap-y-8 md:gap-y-0 md:gap-x-8">
                     <div className="md:w-1/2 mb-6 md:mb-0">
                         <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
                             Spring Sale: Up to 50% Off
@@ -48,22 +52,32 @@ function HomePage() {
                         <p className="text-green-100 mb-6">
                             Discover our latest collection of electronics and accessories at unbeatable prices.
                         </p>
-                        <button className="bg-white text-green-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-50 transition">
+
+                        <a
+                            className="bg-white text-green-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-50 transition cursor-pointer"
+                            onClick={(e) => {
+                                e.preventDefault(); // Prevent default anchor behavior
+                                const section = document.getElementById("featured-products");
+                                section?.scrollIntoView({ behavior: "smooth" }); // Smooth scroll
+                            }}
+                        >
                             Shop Now
-                        </button>
+                        </a>
                     </div>
                     <div className="md:w-1/2 flex justify-center">
                         <img
-                            src="static/images/laptop-black-screen.jpg"
+                            src="https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2F2843bde0-471a-4396-81f7-6fc6907a15c6.png"
                             alt="Featured Products"
-                            className="rounded-lg shadow-lg max-w-full h-auto"
+                            className="rounded-lg shadow-lg w-100 h-auto object-contain md:w-auto md:h-full"
                         />
                     </div>
                 </div>
             </div>
 
             {/* Featured Products */}
-            <section className="mb-12">
+            <section
+                id={'featured-products'}
+                className="mb-12">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-gray-800">Featured Products</h2>
                     <Link to="/products" className="text-green-600 hover:underline">

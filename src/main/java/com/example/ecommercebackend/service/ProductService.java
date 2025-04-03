@@ -46,7 +46,7 @@ public class ProductService {
     public void initializeProducts() {
         if (productRepository.count() == 0) {
             productRepository.saveAll(List.of(
-                    new Product(null, "Laptop", 999.99, "A high-performance laptop with 16GB RAM and 512GB SSD", "/images/laptop-black-screen.jpg", 15, "Electronics"),
+                    new Product(null, "Laptop", 999.99, "A high-performance laptop with 16GB RAM and 512GB SSD", "https://images.indianexpress.com/2025/04/IMG-20250402-WA0000.jpg?w=640", 15, "Electronics"),
                     new Product(null, "Smartphone", 499.99, "A sleek smartphone with 128GB storage", "https://via.placeholder.com/300", 20, "Electronics"),
                     new Product(null, "Headphones", 79.99, "Noise-cancelling over-ear headphones", "https://via.placeholder.com/300", 30, "Accessories"),
                     new Product(null, "Smart Watch", 199.99, "Fitness tracking smartwatch with heart rate monitor", "https://via.placeholder.com/300", 12, "Wearables"),
